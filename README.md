@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/github/license/katherinevankirk/dss)](LICENSE)
 
 **A framework for efficiently estimating Pauli string observables with bounded-depth measurements**  
-Supported by the [Unitary Fund](https://unitary.fund)  
+Supported by the [Unitary Foundation](https://unitary.fund)  
 
 ---
 
