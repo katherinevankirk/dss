@@ -26,6 +26,7 @@ It provides tools to run the derandomized shallow shadows (DSS) algorithm, which
 - 🎯 Optimize short-depth measurement circuits using derandomization
 - 🧰 Configure derandomization procedure via a central `DSSConfig`
 - 💻 Command-line and Python API interfaces
+- 🧩 Only dependency is Numpy
 
 ---
 
@@ -43,7 +44,7 @@ pip install -e .
 
 ## 🚀 Usage
 
-We provide several avenues for implementing the DSS algorithm. Moreover, we also include two Pauli string text files (pauli_strings_30 and pauli_strings_bell), which one can use to run examples. The first example, `pauli_strings_30.txt` contrains 30 different length-8 Pauli strings, and the second example `pauli_strings_bell.txt` contrains 3 Pauli strings, which commute and are simultaneously diagonalized by the bell basis. Either example may be tested by specifying the length $N$ of the strings, the `depth` of the measurement circuit, the hyperparameter `eta`, and the total number of desired measurements `total_measurements`.
+We provide several avenues for implementing the DSS algorithm. Moreover, we also include two Pauli string text files (pauli_strings_30 and pauli_strings_bell), which one can use to run examples. The first example, `pauli_strings_30.txt` contrains 30 different length-8 Pauli strings, and the second example `pauli_strings_bell.txt` contrains 3 Pauli strings, which commute and are simultaneously diagonalized by the bell basis. These examples may be tested using the below, which specifying the length `N` of the strings, the `depth` of the measurement circuit, the hyperparameter `eta`, the \textit{total} number of desired measurements `total_measurements`, and the number of measurements \textit{per} Pauli observable `measurements_per_observable`. Note that the DSS algorithm will terminate either when (1) the total number of measurements has been reached or when (2) each observable has been measured `measurements_per_observable` number of times. 
 
 ### Command-Line
 
