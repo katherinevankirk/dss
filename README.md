@@ -1,14 +1,17 @@
 # DSS: Derandomized Shallow Shadows
 
+**A framework for efficiently estimating Pauli string observables with bounded-depth measurements**  
+
+
+[![Unitary Fund](https://img.shields.io/badge/Supported%20By-UNITARY%20FOUNDATION-brightgreen.svg?style=for-the-badge)](http://unitary.fund)
+
 [![Python](https://img.shields.io/badge/python-3.8+-blue)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/github/license/katherinevankirk/dss)](LICENSE)
 
-**A framework for efficiently estimating Pauli string observables with bounded-depth measurements**  
-Supported by the [Unitary Foundation](https://unitary.fund)  
 
 ---
 
-## 🔍 Key Idea
+## 🔍 About
 
 This project implements methods from:
 
@@ -114,9 +117,9 @@ At a high level, the algorithm derandomizes each measurement with the following 
 3. Chooses **1-qubit gates** from a discrete set (e.g., H, S)
 4. Returns the final measurement circuit
 
+<img src="/doc/derand_scheme.png" alt="Alt text" height="220" width="900">
 
-
-This mimics a **greedy walk through the configuration space**, favoring setups that are globally effective. DSS efficiently evaluates each candidate circuit using **tensor network methods** that computes the expected information gain from that layout. In other words, the DSS algorithm scores circuits based on the **probability of learning all Pauli strings**, and it always selects the configuration that minimizes this expected cost. The tensor network methods make the algorithm scalable, even for many strings and large qubit counts.  See [arXiv:2412.18973](https://arxiv.org/abs/2412.18973) for theoretical details, performance guarantees, and benchmarks against previous bounded-depth learning strategies. The Pauli string estimates are guaranteed to be at least as good as if one used $N$ shots of the equivalent-depth shallow shadows protocol, and we find that the resulting Pauli estimates only become more precise with increasing depth.
+This mimics a **greedy walk through the configuration space**, favoring setups that are globally effective. DSS efficiently evaluates each candidate circuit using **tensor network methods** that computes the expected information gain from that layout. In other words, the DSS algorithm scores circuits based on the **probability of learning all Pauli strings**, and it always selects the configuration that minimizes this expected cost. The tensor network methods make the algorithm scalable, even for many strings and large qubit counts.  See our preprint [arXiv:2412.18973](https://arxiv.org/abs/2412.18973) for theoretical details, performance guarantees, and benchmarks against previous bounded-depth learning strategies. The Pauli string estimates are guaranteed to be at least as good as if one used $N$ shots of the equivalent-depth shallow shadows protocol, and we find that the resulting Pauli estimates only become more precise with increasing depth.
 
 
 --- 
