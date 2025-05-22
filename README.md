@@ -44,7 +44,7 @@ pip install -e .
 
 ## 🚀 Usage
 
-We provide several avenues for implementing the DSS algorithm. Moreover, we also include two Pauli string text files (pauli_strings_30 and pauli_strings_bell), which one can use to run examples. The first example, `pauli_strings_30.txt` contrains 30 different length-8 Pauli strings, and the second example `pauli_strings_bell.txt` contrains 3 Pauli strings, which commute and are simultaneously diagonalized by the bell basis. These examples may be tested using the below, which specifying the length `N` of the strings, the `depth` of the measurement circuit, the hyperparameter `eta`, the \textit{total} number of desired measurements `total_measurements`, and the number of measurements \textit{per} Pauli observable `measurements_per_observable`. Note that the DSS algorithm will terminate either when (1) the total number of measurements has been reached or when (2) each observable has been measured `measurements_per_observable` number of times. 
+DSS can be run via the command line or directly as a Python library.
 
 ### Command-Line
 
@@ -64,7 +64,7 @@ from dss.config import build_config_from_file
 from dss.derandomization import full_derandomization
 
 config = build_config_from_file(
-    filepath="pauli_strings_bell.txt",
+    pauli_filepath="pauli_strings_bell.txt",
     N=8,
     depth=3,
     eta=0.9,
@@ -74,26 +74,27 @@ config = build_config_from_file(
 results = full_derandomization(config)
 ```
 
----
+### 📄 Input Format and Examples
 
-## 📄 Input Format
+We include two example Pauli string files for demonstration:
+- `pauli_strings_30.txt`: a realistic workload of 30 unique 8-qubit Pauli strings.
+- `pauli_strings_bell.txt`: a minimal test case of 3 commuting Pauli strings, diagonal in the Bell basis.
 
-### Pauli Strings
 
-Each line in your `.txt` file should be a valid Pauli string:
+To run DSS, you can specify:
+- \textsf{pauli_filepath}: All Pauli strings should be stored in a .txt file with one string per line, each of length N
+- \textsf{N}: the length of the Pauli strings (i.e., number of qubits)
+- `depth`: the depth of the measurement circuit
+- `eta`: a noise-tolerance hyperparameter (often set as ε²)
+- `total_measurements`: the maximum number of total measurements
+- `measurements_per_observable`: the cap for how often each observable is measured
+- [Optional] \textsf{weights_filepath}: If using precomputed weights, create a weights.txt file with one float per line, corresponding to each Pauli string
 
-```
-IXIXYXYY
-XIYIIIZZ
-XYXZXIXX
-...
-```
 
-You may also use `pauli_strings_bell.txt` for simpler examples.
+The DSS algorithm will terminate when either:
+1. The total number of measurements is reached, **or**
+2. Each Pauli observable is measured `measurements_per_observable` times.
 
-### Optional: Weights
-
-If used, weights can be loaded from a `weights.txt` file with one float per line.
 
 ---
 
