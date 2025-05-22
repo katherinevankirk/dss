@@ -3,7 +3,7 @@
 [![Python](https://img.shields.io/badge/python-3.8+-blue)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/github/license/katherinevankirk/dss)](LICENSE)
 
-**A structured simulation framework for Pauli measurements with derandomized gate configurations**  
+**A structured framework for efficiently estimating Pauli string observables with bounded-depth measurements**  
 Supported by the [Unitary Fund](https://unitary.fund)  
 Relevant paper: [arXiv:2412.18973](https://arxiv.org/abs/2412.18973)
 
@@ -13,10 +13,10 @@ Relevant paper: [arXiv:2412.18973](https://arxiv.org/abs/2412.18973)
 
 This project implements methods from:
 
-> Hu, Hong-Ye, et al. *Variance Reduction for Pauli Measurements via Derandomization*.  
+> Katherine Van Kirk, Christian Kokail, Jonathan Kunjummen, Hong-Ye Hu, Yanting Teng, Madelyn Cain, Jacob Taylor, Susanne F. Yelin, Hannes Pichler, and Mikhail Lukin. *Derandomized shallow shadows: Efficient Pauli learning with bounded-depth circuits*.  
 > [arXiv:2412.18973](https://arxiv.org/abs/2412.18973)
 
-It provides tools to simulate and optimize Pauli measurement circuits using structured configurations of single-qubit gates.
+It provides tools to run the derandomized shallow shadows algorithm, which optimizes shallow measurement circuits for learning a given set of Pauli strings. 
 
 ---
 
@@ -31,7 +31,7 @@ It provides tools to simulate and optimize Pauli measurement circuits using stru
 
 ---
 
-## 🧰 Installation
+## 🛠️ Installation
 
 Clone and install from [GitHub](https://github.com/katherinevankirk/dss):
 
@@ -116,9 +116,9 @@ run_dss.py             # Command-line entry point
 If you use DSS in your research, please cite:
 
 ```
-@article{hu2024derandomization,
-  title={Variance Reduction for Pauli Measurements via Derandomization},
-  author={Hu, Hong-Ye and others},
+@article{vankirk2024derandomized,
+  title={Derandomized shallow shadows: Efficient Pauli learning with bounded-depth circuits},
+  author={Van Kirk, Katherine and Kokail, Christian and Kunjummen, Jonathan and Hu, Hong-Ye and Teng, Yanting and Cain, Madelyn and Taylor, Jacob and Yelin, Susanne F and Pichler, Hannes and Lukin, Mikhail},
   journal={arXiv preprint arXiv:2412.18973},
   year={2024}
 }
