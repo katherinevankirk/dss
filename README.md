@@ -101,16 +101,11 @@ run_dss.py                     # Command-line entry point
 
 ---
 
-## 🧠 Background: How the DSS algorithm works
-
-The derandomized shallow shadows (DSS) algorithm, which optimizes shallow measurement circuits for learning a given set of Pauli strings. The algorithm specifies some set of $N$ measurement circuits, which rotate into the desired measurement bases. Crucially, these $N$ measurement circuits each contain at most depth $d$ layers of two qubit gates, and the algorithm determines these circuits by derandomizing shallow shadows. Exploiting tensor network techniques that mimic classical Markovian processes, our algorithm optimizes shallow circuits to maximize the probability of learning the given set of Pauli strings. We find effective, shallow circuits by selecting circuits with high probability of learning the Pauli strings.  
-
-
 ## 🧠 Background: How the DSS Algorithm Works
 
 The **Derandomized Shallow Shadows (DSS)** algorithm provides an efficient strategy for learning Pauli observables using **bounded-depth quantum circuits**.
 
-#### 🧪 DSS Strategy
+#### 💡 DSS Strategy
 
 In many quantum applications (e.g. chemistry, simulation, phase recognition), we must **estimate expectation values of many Pauli strings**. However, directly estimating each Pauli string is inefficient, grouping strategies require large circuit depth, and while shallow shadow schemes are low depth, they are not tailored to the specific Pauli learning problem. Indeed usually we know ahead of time what Paulis we want to estimate in our experiment. DSS avoids randomization by **systematically selecting measurement circuits** that maximize Pauli learnability under depth constraints.
 
@@ -121,9 +116,11 @@ At a high level, the algorithm:
 4. Scores circuits based on the **probability of learning all Pauli strings**
 5. Selects the configuration that minimizes expected cost
 
-Optimization details:  This mimics a **greedy walk through the configuration space**, favoring setups that are globally effective. DSS evaluates each candidate circuit using a **tensor network contraction** that computes the expected information gain from that layout. This makes the algorithm efficient, even for many strings and large qubit counts.
+#### 💡 Optimization Details
 
-> 💡 See [arXiv:2412.18973](https://arxiv.org/abs/2412.18973) for theoretical details, performance guarantees, and benchmarks against previous bounded-depth learning strategies.
+This mimics a **greedy walk through the configuration space**, favoring setups that are globally effective. DSS efficiently evaluates each candidate circuit using a **tensor network contraction** that computes the expected information gain from that layout. This makes the algorithm scalable, even for many strings and large qubit counts. 
+
+>  See [arXiv:2412.18973](https://arxiv.org/abs/2412.18973) for theoretical details, performance guarantees, and benchmarks against previous bounded-depth learning strategies.
 
 
 --- 
