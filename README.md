@@ -3,8 +3,13 @@
 [![Python](https://img.shields.io/badge/python-3.8+-blue)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/github/license/katherinevankirk/dss)](LICENSE)
 
-**A structured framework for efficiently estimating Pauli string observables with bounded-depth measurements**  
+**A framework for efficiently estimating Pauli string observables with bounded-depth measurements**  
 Supported by the [Unitary Fund](https://unitary.fund)  
+This project implements methods from:
+
+> Katherine Van Kirk, Christian Kokail, Jonathan Kunjummen, Hong-Ye Hu, Yanting Teng, Madelyn Cain, Jacob Taylor, Susanne F. Yelin, Hannes Pichler, and Mikhail Lukin. *Derandomized shallow shadows: Efficient Pauli learning with bounded-depth circuits*.  
+> [arXiv:2412.18973](https://arxiv.org/abs/2412.18973)
+
 
 ---
 
@@ -44,7 +49,15 @@ pip install -e .
 
 ## 🚀 Usage
 
-DSS can be run via the command line or directly as a Python library.
+DSS can be run via the command line or directly as a Python library. We include two example Pauli string files for demonstration:
+- 📄 `pauli_strings_30.txt`: a realistic workload of 30 unique 8-qubit Pauli strings.
+- 📄 `pauli_strings_bell.txt`: a minimal test case of 3 commuting Pauli strings, diagonal in the Bell basis.
+
+The DSS algorithm will terminate when either:
+1. The total number of measurements is reached, **or**
+2. Each Pauli observable is measured `measurements_per_observable` times.
+
+   
 
 ### Command-Line
 
@@ -64,36 +77,16 @@ from dss.config import build_config_from_file
 from dss.derandomization import full_derandomization
 
 config = build_config_from_file(
-    pauli_filepath="pauli_strings_bell.txt",
-    N=8,
-    depth=3,
-    eta=0.9,
-    total_measurements=100,
-    measurements_per_observable=100
+    pauli_filepath="pauli_strings_bell.txt",   # all Pauli strings should be stored in a .txt file with one string per line, each of length N
+    weights_filepath=args."weights.txt",       # (optional) create a file with one float per line, corresponding to relative importance of each Pauli string
+    N=8,                                       # the length of the Pauli strings (i.e., number of qubits)
+    depth=3,                                   # the maximum allowed depth of the measurement circuit
+    eta=0.9,                                   # a noise-tolerance hyperparameter (often set as ε²)
+    total_measurements=100,                    # the number of total measurements
+    measurements_per_observable=100            # the cap for how often each observable is measured
 )
 results = full_derandomization(config)
 ```
-
-### 📄 Input Format and Examples
-
-We include two example Pauli string files for demonstration:
-- `pauli_strings_30.txt`: a realistic workload of 30 unique 8-qubit Pauli strings.
-- `pauli_strings_bell.txt`: a minimal test case of 3 commuting Pauli strings, diagonal in the Bell basis.
-
-
-To run DSS, you can specify:
-- \textsf{pauli_filepath}: All Pauli strings should be stored in a .txt file with one string per line, each of length N
-- \textsf{N}: the length of the Pauli strings (i.e., number of qubits)
-- `depth`: the depth of the measurement circuit
-- `eta`: a noise-tolerance hyperparameter (often set as ε²)
-- `total_measurements`: the maximum number of total measurements
-- `measurements_per_observable`: the cap for how often each observable is measured
-- [Optional] \textsf{weights_filepath}: If using precomputed weights, create a weights.txt file with one float per line, corresponding to each Pauli string
-
-
-The DSS algorithm will terminate when either:
-1. The total number of measurements is reached, **or**
-2. Each Pauli observable is measured `measurements_per_observable` times.
 
 
 ---
