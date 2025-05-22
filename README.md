@@ -50,7 +50,7 @@ DSS can be run via the command line or directly as a Python library. We include 
 
 The DSS algorithm will terminate when either:
 1. The total number of measurements is reached, **or**
-2. Each Pauli observable is measured `measurements_per_observable` times.
+2. Each Pauli observable is measured $\textsf{measurements_per_observable}$ times.
 
    
 
