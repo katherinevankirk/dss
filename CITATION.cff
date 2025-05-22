@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the following metadata."
+authors:
+  - family-names: Van Kirk
+    given-names: Katherine
+  - family-names: Hu
+    given-names: Hong-Ye
+title: "DSS: Derandomized Single-Qubit Simulation"
+version: 0.1.0
+license: MIT
+repository-code: https://github.com/katherinevankirk/dss
+preferred-citation:
+  type: article
+  title: "Variance Reduction for Pauli Measurements via Derandomization"
+  authors:
+    - family-names: Hu
+      given-names: Hong-Ye
+  year: 2024
+  archive: arXiv
+  archive-id: 2412.18973
