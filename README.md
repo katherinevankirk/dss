@@ -5,11 +5,6 @@
 
 **A framework for efficiently estimating Pauli string observables with bounded-depth measurements**  
 Supported by the [Unitary Fund](https://unitary.fund)  
-This project implements methods from:
-
-> Katherine Van Kirk, Christian Kokail, Jonathan Kunjummen, Hong-Ye Hu, Yanting Teng, Madelyn Cain, Jacob Taylor, Susanne F. Yelin, Hannes Pichler, and Mikhail Lukin. *Derandomized shallow shadows: Efficient Pauli learning with bounded-depth circuits*.  
-> [arXiv:2412.18973](https://arxiv.org/abs/2412.18973)
-
 
 ---
 
