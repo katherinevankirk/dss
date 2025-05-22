@@ -103,17 +103,16 @@ run_dss.py                     # Command-line entry point
 
 ## 🧠 Background: How the DSS Algorithm Works
 
-The **Derandomized Shallow Shadows (DSS)** algorithm provides an efficient strategy for learning Pauli observables using **bounded-depth quantum circuits**.
+The **Derandomized Shallow Shadows (DSS)** algorithm provides an efficient strategy for learning Pauli observables using **bounded-depth quantum circuits**. In many quantum applications (e.g. chemistry, simulation, phase recognition), we must **estimate expectation values of many Pauli strings**. However, directly estimating each Pauli string is inefficient, grouping strategies require large circuit depth, and while shallow shadow schemes are low depth, they are not tailored to the specific Pauli learning problem. Indeed usually we know ahead of time what Paulis we want to estimate in our experiment. DSS avoids randomization by **systematically selecting measurement circuits** that maximize Pauli learnability under depth constraints.
+
 
 #### 💡 DSS Strategy
 
-In many quantum applications (e.g. chemistry, simulation, phase recognition), we must **estimate expectation values of many Pauli strings**. However, directly estimating each Pauli string is inefficient, grouping strategies require large circuit depth, and while shallow shadow schemes are low depth, they are not tailored to the specific Pauli learning problem. Indeed usually we know ahead of time what Paulis we want to estimate in our experiment. DSS avoids randomization by **systematically selecting measurement circuits** that maximize Pauli learnability under depth constraints.
-
 At a high level, the algorithm derandomizes each measurement with the following steps:
-i. Fixes a shallow **ansatz** a depth-`d` quantum circuit with N qubits
-ii. Chooses **2-qubit gates** from a discrete set (e.g., CNOT, SWAP)
-iii. Chooses **1-qubit gates** from a discrete set (e.g., H, S)
-iv. Returns the final measurement circuit
+1. Fixes a shallow **ansatz** a depth-`d` quantum circuit with N qubits
+2. Chooses **2-qubit gates** from a discrete set (e.g., CNOT, SWAP)
+3. Chooses **1-qubit gates** from a discrete set (e.g., H, S)
+4. Returns the final measurement circuit
 
 
 
