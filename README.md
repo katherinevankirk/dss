@@ -93,7 +93,7 @@ dss/
 ├── config.py                  # DSSConfig, file loading
 ├── gates.py                   # Quantum gate definitions
 ├── circuit.py                 # Dressing, single/two-qubit gate processing
-├── tensor_constractions.py    # State prep, twirling
+├── tensor_constractions.py    # State prep, twirling, contractions
 ├── cost.py                    # Cost and weight functions
 ├── derandomization.py         # Optimization logic
 run_dss.py                     # Command-line entry point
