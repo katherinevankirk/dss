@@ -1,12 +1,14 @@
 """
-This module defines tensor-based quantum gates,
-measurement and optimization routines for simulating
-parameterized quantum circuits using MPO-like structures.
+This code runs the DSS algorithm using the DSS package. Our
+package uses tensors to represent quantum gates, measurement, 
+and the desired Pauli strings. It returns a set of low-depth 
+measurements that one should make on their quantum computer
+to efficiently learn the specified Pauli strings. 
 
-# GATE CONVENTION : The result of this will be a list of single qubit rotations. They are applied in order from front to back, 
-# following the opposite order of the two qubit gate convention. (First gate in array is upper left near the first Pauli site, second
-# gate is one qubit down, etc. Then you eventually go to next layer towards the measurements.) In circuit format, the output will be
-# the transpose of all single qubit gates you defined.
+GATE CONVENTION : The result of this algorithm will be a list of two-qubit (mmts_struc) and single-qubit (mmts_rots) rotations. They 
+are applied in order from back to front (two-qubit rotations) and from front to back (single-qubit rotations). For example, for the
+single-qubit rotations, the first gate in the array is the upper-left-most gate near the first Pauli site. The second gate is one 
+qubit down, etc. This continues for each gate in this layer, and then for the next layer, you again start at the top. 
 
 """
 
