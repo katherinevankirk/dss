@@ -5,9 +5,9 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "dss"
 version = "0.1.0"
-description = "Derandomized Single-Qubit Simulation Tools"
+description = "Derandomized shallow shadows: Efficient Pauli learning with bounded-depth circuits"
 authors = [
-    { name="Your Name", email="your@email.com" }
+    { name="Katherine Van Kirk", email="" }
 ]
 readme = "README.md"
 requires-python = ">=3.8"
