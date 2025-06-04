@@ -86,7 +86,7 @@ def structure_derandomization(dss_data: DSSConfig, m, count_hits, single_qubit_d
             for gate in range(3): 
                 this_config = np.array(best_config)
                 this_config[l][g] = gate
-                this_cost = confidence_cost_function_structure(dss_data.N, dss_data.depth, dss_data.eta, dss_data.total_measurements, m, this_config, dss_data.pauli_masks, count_hits, structure_database, dss_data.weights, dss_data.measurements_per_observable)
+                this_cost = confidence_cost_function_structure(dss_data.N, dss_data.depth, dss_data.eta, dss_data.max_num_measurements, m, this_config, dss_data.pauli_masks, count_hits, structure_database, dss_data.weights, dss_data.measurements_per_observable)
 
                 if verbose: 
                     print(m, ':', this_config, '->', this_cost)
@@ -139,7 +139,7 @@ def single_qubit_derandomization(dss_data, m, best_two_qubit_gates, count_hits, 
             test_one_gates = np.copy(best_single_qubit_gates)
             test_one_gates[single_qubit_box] = gate_choice
             
-            cost_test = confidence_cost_function_single_qubit(dss_data.N, dss_data.depth, dss_data.eta, dss_data.total_measurements, m, test_one_gates, best_two_qubit_gates, dss_data.pauli_strings_to_learn, dss_data.pauli_masks, count_hits, structure_database, single_qubit_database, dss_data.weights, dss_data.measurements_per_observable)
+            cost_test = confidence_cost_function_single_qubit(dss_data.N, dss_data.depth, dss_data.eta, dss_data.max_num_measurements, m, test_one_gates, best_two_qubit_gates, dss_data.pauli_strings_to_learn, dss_data.pauli_masks, count_hits, structure_database, single_qubit_database, dss_data.weights, dss_data.measurements_per_observable)
             
             if cost_test < min_cost:
                 min_cost = cost_test
@@ -153,8 +153,8 @@ def single_qubit_derandomization(dss_data, m, best_two_qubit_gates, count_hits, 
 
 
 
-# measurements_per_observable, N, depth, eta,total_measurements,pauli_strings_to_learn,pauli_masks
-# def full_derandomization(num_of_measurements_per_observable, system_size, depth, eta, total_measurements, pauli_strings_to_learn, pauli_masks, single_qubit_database, structure_database, weight = None, verbose = False):
+# measurements_per_observable, N, depth, eta,max_num_measurements,pauli_strings_to_learn,pauli_masks
+# def full_derandomization(num_of_measurements_per_observable, system_size, depth, eta, max_num_measurements, pauli_strings_to_learn, pauli_masks, single_qubit_database, structure_database, weight = None, verbose = False):
 
 
 def full_derandomization(dss_data: DSSConfig, verbose = False):
@@ -200,7 +200,7 @@ def full_derandomization(dss_data: DSSConfig, verbose = False):
 
         # END DERANDOMIZATION if either condition below is satisfied: 
         ### Condition #1 -- you reached your measurement budget
-        if m == dss_data.total_measurements:
+        if m == dss_data.max_num_measurements:
             return structure_measurement_settings, measurement_settings, count_hits
         ### Condition #2 -- you measured each Pauli the desired number of times
         success = 0
