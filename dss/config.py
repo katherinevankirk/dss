@@ -8,7 +8,7 @@ from dataclasses import dataclass
 
 @dataclass
 class DSSConfig:
-    N: int                            # all Pauli strings should be stored in a .txt file with one string per line, each of length N
+    N: int                            # each Pauli string has length N
     depth: int                        # the maximum allowed depth of the measurement circuit
     eta: float                        # a noise-tolerance hyperparameter (often set as ε²) controlling what is prioritized in optimization
     max_num_measurements: int         # the maxium number of measurements you could make
