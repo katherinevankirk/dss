@@ -80,7 +80,7 @@ config = build_config_from_file(
     N=8,                                       # the length of the Pauli strings (i.e., number of qubits)
     depth=3,                                   # the maximum allowed depth of the measurement circuit
     eta=0.9,                                   # a noise-tolerance hyperparameter (often set as ε²)
-    max_num_measurements=300,                  # the number of total measurements
+    max_num_measurements=300,                  # the maxium number of measurements you could make
     measurements_per_observable=100            # the cap for how often each observable is measured
 )
 results = full_derandomization(config)
