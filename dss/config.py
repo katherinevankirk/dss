@@ -8,14 +8,14 @@ from dataclasses import dataclass
 
 @dataclass
 class DSSConfig:
-    N: int
-    depth: int
-    eta: float
-    total_measurements: int
-    measurements_per_observable: int
-    pauli_strings_to_learn: list[str]
-    pauli_masks: np.ndarray
-    weights: list[float]
+    N: int                            # all Pauli strings should be stored in a .txt file with one string per line, each of length N
+    depth: int                        # the maximum allowed depth of the measurement circuit
+    eta: float                        # a noise-tolerance hyperparameter (often set as ε²) controlling what is prioritized in optimization
+    max_num_measurements: int         # the maxium number of measurements you could make
+    measurements_per_observable: int  # the cap for how often each observable is measured
+    pauli_strings_to_learn: list[str] # list of Pauli strings (in str form) we want to estimate
+    pauli_masks: np.ndarray           # array of Pauli strings we want to estimate (in boolean form - True for XYZ, False for I)
+    weights: list[float]              # (optional) create a file with one float per line, corresponding to relative importance of each Pauli string
 
 
 
@@ -54,7 +54,7 @@ def load_weights_from_file(filepath: str) -> list[float]:
         return [float(line.strip()) for line in f if line.strip()]
 
 
-def build_config_from_file(pauli_filepath: str, weights_filepath: str, N: int, depth: int, eta: float, total_measurements: int, measurements_per_observable: int) -> DSSConfig:
+def build_config_from_file(pauli_filepath: str, weights_filepath: str, N: int, depth: int, eta: float, max_num_measurements: int, measurements_per_observable: int) -> DSSConfig:
     # Pauli strings we want to learn
     pauli_data = load_pauli_strings_from_file(pauli_filepath)
     pauli_strings_to_learn = process_strings_to_masks(pauli_data)
@@ -68,14 +68,14 @@ def build_config_from_file(pauli_filepath: str, weights_filepath: str, N: int, d
     assert(len(weights) == len(pauli_masks))
 
 
-    if total_measurements is None:
-        total_measurements = len(pauli_strings) * measurements_per_observable
+    if max_num_measurements is None:
+        max_num_measurements = len(pauli_strings) * measurements_per_observable
 
     return DSSConfig(
         N=N,
         depth=depth,
         eta=eta,
-        total_measurements=total_measurements,
+        max_num_measurements=max_num_measurements,
         measurements_per_observable=measurements_per_observable,
         pauli_strings_to_learn=pauli_strings_to_learn,
         pauli_masks=pauli_masks,
