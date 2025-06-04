@@ -90,7 +90,7 @@ def weight_of_all_Paulis(N, single_qubit_config, gate_config, pauli_strings_to_l
 # === Cost Functions ===
 
 
-def confidence_cost_function_structure(N, depth, eta, total_measurements, num_of_measurements_so_far, structure_config, pauli_masks, count_hits, structure_database, weight, num_of_measurements_per_observable):
+def confidence_cost_function_structure(N, depth, eta, max_num_measurements, num_of_measurements_so_far, structure_config, pauli_masks, count_hits, structure_database, weight, num_of_measurements_per_observable):
     """
     For a given measurement circuit, calculate the COST function. 
 
@@ -134,7 +134,7 @@ def confidence_cost_function_structure(N, depth, eta, total_measurements, num_of
         # future measurements ("randomized")        
         cost_l_fixed = math.exp( (-eta / 2) * count_hits[l])
         cost_l_paritial = ( 1 - nu * structure_config_weights[l])
-        cost_l_randomized = ( 1 - nu * random_config_weights[l])**(total_measurements - num_of_measurements_so_far-1)
+        cost_l_randomized = ( 1 - nu * random_config_weights[l])**(max_num_measurements - num_of_measurements_so_far-1)
 
         cost += weight[l]*(cost_l_fixed * cost_l_paritial * cost_l_randomized)
     
@@ -143,7 +143,7 @@ def confidence_cost_function_structure(N, depth, eta, total_measurements, num_of
 
 
 
-def confidence_cost_function_single_qubit(N, depth, eta, total_measurements, num_of_measurements_so_far, column_test, gate_config, pauli_strings_to_learn, pauli_masks, count_hits, structure_database, single_qubit_database, weight, num_of_measurements_per_observable):
+def confidence_cost_function_single_qubit(N, depth, eta, max_num_measurements, num_of_measurements_so_far, column_test, gate_config, pauli_strings_to_learn, pauli_masks, count_hits, structure_database, single_qubit_database, weight, num_of_measurements_per_observable):
     """
     For a given measurement circuit, calculate the COST function. 
 
@@ -194,7 +194,7 @@ def confidence_cost_function_single_qubit(N, depth, eta, total_measurements, num
         # future measurements ("randomized")
         cost_l_fixed = math.exp( (-eta / 2) * count_hits[l])
         cost_l_paritial = ( 1 - nu * fully_fixed_config_weights[l])
-        cost_l_randomized = ( 1 - nu * random_config_weights[l])**(total_measurements - num_of_measurements_so_far-1)
+        cost_l_randomized = ( 1 - nu * random_config_weights[l])**(max_num_measurements - num_of_measurements_so_far-1)
         
         cost += weight[l]*(cost_l_fixed * cost_l_paritial * cost_l_randomized)       
 
