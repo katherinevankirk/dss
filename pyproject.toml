@@ -7,7 +7,7 @@ name = "dss"
 version = "0.1.0"
 description = "Derandomized shallow shadows: Efficient Pauli learning with bounded-depth circuits"
 authors = [
-    { name="Katherine Van Kirk", email="" }
+    { name="Katherine Van Kirk", email="kvankirk@harvard.edu" }
 ]
 readme = "README.md"
 requires-python = ">=3.8"
