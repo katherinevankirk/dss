@@ -15,7 +15,7 @@ class DSSConfig:
     measurements_per_observable: int  # the cap for how often each observable is measured
     pauli_strings_to_learn: list[str] # list of Pauli strings (in str form) we want to estimate
     pauli_masks: np.ndarray           # array of Pauli strings we want to estimate (in boolean form - True for XYZ, False for I)
-    weights: list[float]              # (optional) create a file with one float per line, corresponding to relative importance of each Pauli string
+    weights: list[float]              # (optional) list of one float per Pauli string, indicating relative importance of each Pauli string
 
 
 
