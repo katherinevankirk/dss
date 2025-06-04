@@ -64,7 +64,7 @@ python run_dss.py \
     --N 8 \
     --depth 3 \
     --eta 0.9 \
-    --total_measurements 100 \
+    --max_num_measurements 100 \
     --pauli_file pauli_strings_30.txt
 ```
 
@@ -80,7 +80,7 @@ config = build_config_from_file(
     N=8,                                       # the length of the Pauli strings (i.e., number of qubits)
     depth=3,                                   # the maximum allowed depth of the measurement circuit
     eta=0.9,                                   # a noise-tolerance hyperparameter (often set as ε²)
-    total_measurements=100,                    # the number of total measurements
+    max_num_measurements=300,                  # the number of total measurements
     measurements_per_observable=100            # the cap for how often each observable is measured
 )
 results = full_derandomization(config)
@@ -121,7 +121,7 @@ At a high level, the algorithm derandomizes each measurement with the following 
 
 This mimics a **greedy walk through the configuration space**, favoring setups that are globally effective. DSS efficiently evaluates each candidate circuit using **tensor network methods** that computes the expected information gain from that layout. In other words, the DSS algorithm scores circuits based on the **probability of learning all Pauli strings**, and it always selects the configuration that minimizes this expected cost. The tensor network methods make the algorithm scalable, even for many strings and large qubit counts.  See our preprint [arXiv:2412.18973](https://arxiv.org/abs/2412.18973) for theoretical details, performance guarantees, and benchmarks against previous bounded-depth learning strategies. The Pauli string estimates are guaranteed to be at least as good as if one used $N$ shots of the equivalent-depth shallow shadows protocol, and we find that the resulting Pauli estimates only become more precise with increasing depth. 
 
-The output of the DSS algorithm is a set of depth-`d` measurement circuits. These measurement circuits are the measurements that one should then make on the quantum computer to efficiently learn the given set of Pauli strings. The circuits are specified by specifying the 1- and 2-qubit gates. Choices of `eta`, `total_measurements`, `measurements_per_observable`, and (optionally) `weights` will affect how many and which measurement circuits are chosen. Specifying `weights` for each desired Pauli string lets you prioritize learning some Paulis over others.  And broadly speaking, a smaller `eta` corresponds to the algorithm prioritizing learning all given Paulis as many times as possible, and a larger `eta` leads the algorithm to want to learn all given Paulis at least once. 
+The output of the DSS algorithm is a set of depth-`d` measurement circuits. These measurement circuits are the measurements that one should then make on the quantum computer to efficiently learn the given set of Pauli strings. The circuits are specified by specifying the 1- and 2-qubit gates. Choices of `eta`, `max_num_measurements`, `measurements_per_observable`, and (optionally) `weights` will affect how many and which measurement circuits are chosen. Specifying `weights` for each desired Pauli string lets you prioritize learning some Paulis over others.  And broadly speaking, a smaller `eta` corresponds to the algorithm prioritizing learning all given Paulis as many times as possible, and a larger `eta` leads the algorithm to want to learn all given Paulis at least once. 
 
 
 --- 
