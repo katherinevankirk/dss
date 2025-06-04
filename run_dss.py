@@ -28,7 +28,7 @@ def main() -> None:
     parser.add_argument("--N", type=int, default=8, help="Number of qubits")
     parser.add_argument("--depth", type=int, default=3, help="Circuit depth")
     parser.add_argument("--eta", type=float, default=0.9, help="Eta hyperparameter (usually epsilon^2)")
-    parser.add_argument("--total_measurements", type=int, default=100, help="Total number of measurements")
+    parser.add_argument("--max_num_measurements", type=int, default=100, help="Total number of measurements")
     parser.add_argument("--measurements_per_observable", type=int, default=100, help="Measurements per observable")
     parser.add_argument("--pauli_file", type=str, required=True, help="Path to Pauli strings text file")
     parser.add_argument("--weights_file", type=str, default=None, help="Path to Weights text file")
@@ -42,7 +42,7 @@ def main() -> None:
         N=args.N,
         depth=args.depth,
         eta=args.eta,
-        total_measurements=args.total_measurements-1,
+        max_num_measurements=args.max_num_measurements-1,
         measurements_per_observable=args.measurements_per_observable
     )
 
